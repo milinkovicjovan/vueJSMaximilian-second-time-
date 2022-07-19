@@ -5,8 +5,18 @@ const app = Vue.createApp({
       name: '',
     };
   },
+  computed: {
+    fullname() {
+      if (this.name === '') {
+        return '';
+      }
+      // we add lastname if the name is not empty
+      return this.name + ' ' + 'Milinkovic';
+    },
+  },
   methods: {
-    setName(event, lastName) {
+    outputFullname() {},
+    setName(event) {
       this.name = event.target.value;
     },
     add(num) {
