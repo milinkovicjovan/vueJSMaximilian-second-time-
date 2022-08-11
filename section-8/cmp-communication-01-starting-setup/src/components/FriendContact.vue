@@ -15,12 +15,13 @@
         {{ emailAddress }}
       </li>
     </ul>
+    <button @click="$emit('delete', id)">Delete</button>
   </li>
 </template>
 
 <script>
 export default {
-  // props: ["name", "phoneNumber", "emailAddress", "isFavorite"],
+  // props: ['name', 'phoneNumber', 'emailAddress', 'isFavorite'],
   props: {
     id: {
       type: String,
@@ -42,9 +43,9 @@ export default {
       type: Boolean,
       required: false,
       default: false,
-      // validator: function(value) {
+      // validator: function (value) {
       //   return value === '1' || value === '0';
-      // }
+      // },
     },
   },
   emits: ["toggle-favorite", "delete"],
@@ -61,6 +62,13 @@ export default {
   data() {
     return {
       detailsAreVisible: false,
+      // friend: {
+      //   id: 'manuel',
+      //   name: 'Manuel Lorenz',
+      //   phone: '0123 45678 90',
+      //   email: 'manuel@localhost.com',
+      // },
+      // friendIsFavorite: this.isFavorite,
     };
   },
   methods: {
@@ -69,6 +77,12 @@ export default {
     },
     toggleFavorite() {
       this.$emit("toggle-favorite", this.id);
+      // this.friendIsFavorite = !this.friendIsFavorite;
+      // if (this.friendIsFavorite === '1') {
+      //   this.friendIsFavorite = '0';
+      // } else {
+      //   this.friendIsFavorite = '1';
+      // }
     },
   },
 };
