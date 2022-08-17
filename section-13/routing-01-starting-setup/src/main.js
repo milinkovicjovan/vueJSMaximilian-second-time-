@@ -31,17 +31,39 @@ const router = createRouter({
         default: UsersList,
         footer: UsersFooter,
       },
+      beforeEnter(to, from, next) {
+        console.log('users beforeenter');
+        console.log(to, from);
+        next();
+      },
     }, // our-domain.com/teams => UsersList
     { path: '/:notFound(.*)', component: NotFound },
   ],
   linkActiveClass: 'active',
-  scrollBehavior(to, from, savedPosition) {
-    console.log(to, from, savedPosition);
+  scrollBehavior(_, _2, savedPosition) {
+    // console.log(to, from, savedPosition);
     if (savedPosition) {
       return savedPosition;
     }
     return { left: 0, top: 0 };
   },
+});
+
+router.beforeEach(function (to, from, next) {
+  console.log('Global beforeeach');
+  console.log(to, from);
+  // if (to.name === 'team-members') {
+  //   next();
+  // } else {
+  //   next({ name: 'team-members', params: { teamId: 't2' } });
+  // }
+  next();
+});
+
+router.afterEach(function (to, from) {
+  // sending analytics data
+  console.log('global aftereach');
+  console.log(to, from);
 });
 
 const app = createApp(App);
