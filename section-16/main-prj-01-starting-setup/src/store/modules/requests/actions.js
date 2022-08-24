@@ -22,7 +22,8 @@ export default {
     }
 
     newRequest.id = responseData.name;
-    newRequest.coachId = payload.coachId;
+    newRequest.coachId = payload.coachId; // we have it only in local data not send to the server
+    // console.log(newRequest);
 
     context.commit('addRequest', newRequest);
   },
@@ -35,7 +36,7 @@ export default {
 
     if (!response.ok) {
       const error = new Error(
-        responseData.message || 'Failed to send request.'
+        responseData.message || 'Failed to fetch requests.'
       );
       throw error;
     }

@@ -24,7 +24,7 @@ export default {
     }
 
     context.commit('registerCoach', {
-      ...coachData,
+      ...coachData, // we copy coachData with spreadOperator
       id: userId,
     });
   },

@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  emits: ['change-filter'],
+  emits: ['change-filter'], // custom-event
   data() {
     return {
       filters: {
@@ -33,11 +33,11 @@ export default {
       const inputId = event.target.id;
       const isActive = event.target.checked;
       const updatedFilters = {
-        ...this.filters,
-        [inputId]: isActive,
+        ...this.filters, // we copy filters with spread operator then
+        [inputId]: isActive, // override 1 of 3 properties and set it to inputID isActive
       };
       this.filters = updatedFilters;
-      this.$emit('change-filter', updatedFilters);
+      this.$emit('change-filter', updatedFilters); // we pass updateFilters method
     },
   },
 };

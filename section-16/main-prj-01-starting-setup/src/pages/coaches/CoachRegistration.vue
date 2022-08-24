@@ -16,7 +16,7 @@ export default {
   methods: {
     saveData(data) {
       this.$store.dispatch('coaches/registerCoach', data);
-      this.$router.replace('/coaches'); // with replace we will be forwarded
+      this.$router.replace('/coaches'); // with replace we will be forwarded to coaches page
     },
   },
 };
