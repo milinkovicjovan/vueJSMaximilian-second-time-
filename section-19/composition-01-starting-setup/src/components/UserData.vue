@@ -1,19 +1,27 @@
 <template>
-  <h2>{{ userName }}</h2>
-  <h3>{{ age }}</h3>
+  <div>
+    <h2>{{ userName }}</h2>
+    <h3>{{ age }}</h3>
+  </div>
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, inject } from 'vue';
 
 export default {
-  props: ['firstName', 'lastName', 'age'],
-  setup(props) {
+  props: ['firstName', 'lastName'],
+  setup(props, context) {
     const uName = computed(function () {
       return props.firstName + ' ' + props.lastName;
     });
 
-    return { userName: uName };
+    const age = inject('userAge');
+
+    console.log(context);
+
+    // context.emit('save-data', 1); // this.$emit('save-data', 1)
+
+    return { userName: uName, age };
   },
   //   computed: {
   //     userName() {
