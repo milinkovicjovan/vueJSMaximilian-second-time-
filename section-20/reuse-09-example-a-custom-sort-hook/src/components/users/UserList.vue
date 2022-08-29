@@ -1,17 +1,10 @@
 <template>
   <base-container>
     <h2>Active Users</h2>
-    <base-search
-      @search="updateSearch"
-      :search-term="enteredSearchTerm"
-    ></base-search>
+    <base-search @search="updateSearch" :search-term="enteredSearchTerm"></base-search>
     <div>
-      <button @click="sort('asc')" :class="{ selected: sorting === 'asc' }">
-        Sort Ascending
-      </button>
-      <button @click="sort('desc')" :class="{ selected: sorting === 'desc' }">
-        Sort Descending
-      </button>
+      <button @click="sort('asc')" :class="{selected: sorting === 'asc'}">Sort Ascending</button>
+      <button @click="sort('desc')" :class="{selected: sorting === 'desc'}">Sort Descending</button>
     </div>
     <ul>
       <user-item
@@ -40,6 +33,7 @@ export default {
   emits: ['list-projects'],
   setup(props) {
     const { users } = toRefs(props);
+
     const { enteredSearchTerm, availableItems, updateSearch } = useSearch(
       users,
       'fullName'
